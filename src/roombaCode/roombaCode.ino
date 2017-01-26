@@ -30,44 +30,33 @@ void setup() {
   delay(2000);
   Serial.println("I'm awake");
    delay(1000);
-  mySerial.write(128);
+
+
+   //Setting to safe mode
+  mySerial.write(128  ); //Starting roomba
   delay(1000);
-  mySerial.write(131);
+  mySerial.write(131); //Safemode
   delay(1000);
   Serial.println("Going into safemode");
   delay(1000);
-  codeSong();
-   swrite(141);
+  codeSong(); //Code the song into memoryM
+  //Play song.
+   swrite(141); //playing the song
   Serial.println("Writing to play");
-  swrite(1);
   delay(1000);
-    for(int i = 0; i < 10; i++){
-        mySerial.write(137);
-  sendHighLow(50);
-  sendHighLow(25);
-  driveStraight(100);
-  driveStraight(0);
+
+  //Drive straight
+  Serial.println("Driving striaght");
+  for(int i = 0; i < 10; i++){
+    driveStraight(100);
   }
-  endofCode();
+  delay(100);
+  Serial.println("Stopping");
+    driveStraight(0);
+  //endofCode();
 
 }
-void driveStraight(int vel){
-  mySerial.write(137);
-  sendHighLow(vel);
-  mySerial.write(128);
-  mySerial.write(1);
-}
-void drive(int vel, int rad){
-  mySerial.write(137);
-  sendHighLow(vel);
-  sendHighLow(rad);k
-}
-void sendHighLow(int send) {
-  mySerial.write(highByte(send));
-  delay(100);
-  mySerial.write(lowByte(send));
-  delay(100);
-}
+
 void codeSong(){
   Serial.println("Wrote opcode for writing song");
   swrite(140);
@@ -80,6 +69,30 @@ void codeSong(){
     playNote(i,255);
   }
 }
+
+
+void driveStraight(int vel){
+  delay(100);
+  mySerial.write(137);
+  delay(100);
+  sendHighLow(vel);
+  delay(100);
+  mySerial.write(128);
+  delay(100);
+  mySerial.write(1);
+}
+void drive(int vel, int rad){
+  mySerial.write(137);
+  sendHighLow(vel);
+  sendHighLow(rad);
+}
+void sendHighLow(int send) {
+  mySerial.write(highByte(send));
+  delay(100);
+  mySerial.write(lowByte(send));
+  delay(100);
+}
+
 
 void playNote(int note, int len){
   swrite(note);
