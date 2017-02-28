@@ -1,46 +1,10 @@
-/*
-SparkFun Inventor's Kit 
-Example sketch 04
 
-MULTIPLE LEDs
-
-  Make six LEDs dance. Dance LEDs, dance!
-
-
-This sketch was written by SparkFun Electronics,
-with lots of help from the Arduino community.
-This code is completely free for any use.
-Visit http://learn.sparkfun.com/products/2 for SIK information.
-Visit http://www.arduino.cc to learn more about Arduino.
-*/
-
-
-// To keep track of all the LED pins, we'll use an "array."
-// An array lets you store a group of variables, and refer to them
-// by their position, or "index." Here we're creating an array of
-// six integers, and initializing them to a set of values:
-int ledPins[] = {4,5,6,7,8,9};
-
-
+//The pins
+int ledPins[] = {4,5,6,7,2,3};
 void setup()
 {
   //create a local variable to store the index of which pin we want to control
   int index;
-
-
-  // For the for() loop below, these are the three statements:
-
-  //   1. index = 0;    Before starting, make index = 0.
-  //   2. index <= 5;   If index is less or equal to 5, run the following code
-  //   3. index++   Putting "++" after a variable means "add one to it".
-
-  // When the test in statement 2 is finally false, the sketch
-  // will continue.
-
-  // This for() loop will make index = 0, then run the pinMode()
-  // statement within the brackets. It will then do the same thing
-  // for index = 2, index = 3, etc. all the way to index = 5.
-
   for(index = 0; index <= 5; index++)
   {
     pinMode(ledPins[index],OUTPUT);
@@ -50,39 +14,9 @@ void setup()
 
 void loop()
 {
-  // This loop() calls functions that we've written further below.
-  // We've disabled some of these by commenting them out (putting
-  // "//" in front of them). To try different LED displays, remove
-  // the "//" in front of the ones you'd like to run, and add "//"
-  // in front of those you don't to comment out (and disable) those
-  // lines.
-
-  // Light up all the LEDs in turn
   oneAfterAnotherNoLoop();  
-
-  // Same as oneAfterAnotherNoLoop, but less typing
-  //oneAfterAnotherLoop();  
-
-  // Turn on one LED at a time, scrolling down the line
-  //oneOnAtATime();         
-
-  // Light the LEDs middle to the edges                           
-  //pingPong();             
-
-  // Chase lights like you see on signs 
-  //marquee();              
-
-  // Blink LEDs randomly
-  //randomLED();            
 }
 
-
-/*
-oneAfterAnotherNoLoop()
-This function will light one LED, delay for delayTime, then light
-the next LED, and repeat until all the LEDs are on. It will then
-turn them off in the reverse order.
-*/
 
 void oneAfterAnotherNoLoop()
 {
